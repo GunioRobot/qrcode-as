@@ -18,31 +18,31 @@ package qrcode {
       var i:int;
       if (debug!=null) {
         for each(line in linesAcrossHorizontally) {
-          drawLine(debug, line, 0x00ff00, HORIZONTAL); 
+          drawLine(debug, line, 0x00ff00, HORIZONTAL);
         }
-        for each(line in linesAcrossVertically) { 
-          drawLine(debug, line, 0x00ff00, VERTICAL); 
+        for each(line in linesAcrossVertically) {
+          drawLine(debug, line, 0x00ff00, VERTICAL);
         }
       }
-      var horizontalHints:Array = 
+      var horizontalHints:Array =
         findPositionDetectionPatternHints(linesAcrossHorizontally);
-      var verticalHints:Array = 
+      var verticalHints:Array =
         findPositionDetectionPatternHints(linesAcrossVertically);
 
       if (debug!=null) {
-        for each(line in horizontalHints) { 
-          drawLine(debug, line, 0xff0000, HORIZONTAL); 
+        for each(line in horizontalHints) {
+          drawLine(debug, line, 0xff0000, HORIZONTAL);
         }
-        for each(line in verticalHints) { 
-          drawLine(debug, line, 0xff0000, VERTICAL); 
+        for each(line in verticalHints) {
+          drawLine(debug, line, 0xff0000, VERTICAL);
         }
       }
 
-      var patterns:Array = findPositionDetectionPatterns(horizontalHints, 
+      var patterns:Array = findPositionDetectionPatterns(horizontalHints,
           verticalHints);
 
       if (patterns.length==3) {
-        patterns = orderPositionDetectionPatterns(patterns); 
+        patterns = orderPositionDetectionPatterns(patterns);
 
         if (debug!=null) {
           var triangle:Shape = new Shape();
@@ -55,7 +55,7 @@ package qrcode {
           debug.draw(triangle);
         }
 
-        // adhoc enhancement for roughVersion calculation 
+        // adhoc enhancement for roughVersion calculation
         var d:Number = Point.distance(patterns[0].center, patterns[1].center);
         var cos:Number = Math.abs(patterns[0].center.x-patterns[1].center.x)/d;
         var sin:Number = Math.abs(patterns[0].center.y-patterns[2].center.y)/d;
@@ -86,7 +86,7 @@ package qrcode {
       debug.draw(l);
     }
 
-    private static function findLinesAcross(pixels:BitmapData, 
+    private static function findLinesAcross(pixels:BitmapData,
         direction:int):Array {
       var MAX_SIDE_PRIMARY:int;
       var MAX_SIDE_SECONDARY:int;
@@ -99,14 +99,14 @@ package qrcode {
       var reference:Array = new Array(1, 1, 3, 1, 1);
       var referenceSum:int = 7; //1+1+3+1+1
       var recent:Array = new Array();
-      var linesAcross:Array = new Array(); 
+      var linesAcross:Array = new Array();
 
       for (var b:int=0; b<MAX_SIDE_SECONDARY; b++) {
-        var last:int = 0; 
+        var last:int = 0;
         var current:int = 0;
         var length:int = 0;
         for (var a:int=0; a<MAX_SIDE_PRIMARY; a++) {
-          current = direction==HORIZONTAL ? pixels.getPixel(a,b) : 
+          current = direction==HORIZONTAL ? pixels.getPixel(a,b) :
             pixels.getPixel(b,a);
 
           if (current==last) {
@@ -132,8 +132,8 @@ package qrcode {
                   }
                 }
                 if (i==recent.length) {
-                  var endPoint:Point = direction==HORIZONTAL ? 
-                    new Point(a-1,b) : 
+                  var endPoint:Point = direction==HORIZONTAL ?
+                    new Point(a-1,b) :
                     new Point(b,a-1);
                   linesAcross.push({endPoint:endPoint, offset:recentSum});
                 }
@@ -163,7 +163,7 @@ package qrcode {
         if (i == clusters.length) {
           clusters.push(new Array(target));
         }
-      }  
+      }
 
       clusters.sortOn("length", Array.DESCENDING | Array.NUMERIC);
 
@@ -226,7 +226,7 @@ package qrcode {
         topRight = b;
         bottomLeft = a;
       }
-      
+
       return new Array(topLeft, topRight, bottomLeft);
     }
   }

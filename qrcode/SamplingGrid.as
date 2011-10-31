@@ -21,5 +21,5 @@ package qrcode {
       }
       return sampledPixels;
     }
-  }    
+  }
 }

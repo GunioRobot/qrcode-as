@@ -1,7 +1,7 @@
 package qrcode {
   import flash.display.*;
   import flash.geom.*;
-  
+
   public class AlignmentPattern {
     public static function findPattern(pixels:BitmapData, finderPattern:Object,
                                        debug:BitmapData):Array {
@@ -45,19 +45,19 @@ package qrcode {
         if (current==0 && last!=0) { leftX=x-p; break; }
         last = current;
       }
-    
+
       for (p=1,last=0; x+p<pixels.width; p++) {
         current = pixels.getPixel(x+p, y);
         if (current==0 && last!=0) { rightX=x+p; break; }
         last = current;
       }
-    
+
       for (p=1,last=0; y-p>=0; p++) {
         current = pixels.getPixel(x, y-p);
         if (current==0 && last!=0) { topY=y-p; break; }
         last = current;
       }
-        
+
       for (p=1,last=0; y+p<pixels.height; p++) {
         current = pixels.getPixel(x, y+p);
         if (current==0 && last!=0) { bottomY=y+p; break; }

@@ -17,7 +17,7 @@ package {
       stage.scaleMode = StageScaleMode.NO_SCALE;
       stage.align = StageAlign.TOP_LEFT;
 
-      var camera:Camera = Camera.getCamera();      
+      var camera:Camera = Camera.getCamera();
 
       if (camera!=null) {
         camera.setMode(640, 480, 30);

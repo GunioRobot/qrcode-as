@@ -23,7 +23,7 @@ package qrcode {
       if (alignmentPattern!=null) {
         this.rightBottom = alignmentPattern[0];
       }
-      
+
       this.sideLength = 17+finderPattern.roughVersion*4;
       var r:Number = Point.distance(finderPattern.leftTop, finderPattern.rightTop);
       this.cos = (this.rightTop.x-this.leftTop.x)/r;

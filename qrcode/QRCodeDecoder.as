@@ -15,9 +15,9 @@ package qrcode {
 
       try {
         var finderPattern:Object = FinderPattern.findPattern(binaryPixels, debug);
-        result.pos.leftTop = finderPattern.leftTop; 
-        result.pos.rightTop = finderPattern.rightTop; 
-        result.pos.leftBottom = finderPattern.leftBottom; 
+        result.pos.leftTop = finderPattern.leftTop;
+        result.pos.rightTop = finderPattern.rightTop;
+        result.pos.leftBottom = finderPattern.leftBottom;
         result.text = "roughVersion: "+finderPattern.roughVersion;
         if (finderPattern.roughVersion<=6) {
           var alignmentPattern:Array;
@@ -48,10 +48,10 @@ package qrcode {
 
       var areaWidth:int=binaryPixels.width/nDivision;
       var areaHeight:int=binaryPixels.height/nDivision;
-      
+
       for (var ay:int=0; ay<nDivision; ay++) {
         for (var ax:int=0; ax<nDivision; ax++) {
-          var rectangle:Rectangle = new Rectangle(ax*areaWidth, ay*areaHeight, 
+          var rectangle:Rectangle = new Rectangle(ax*areaWidth, ay*areaHeight,
               areaWidth, areaHeight);
 
           var samples:ByteArray = pixels.getPixels(rectangle);
@@ -65,7 +65,7 @@ package qrcode {
           threshold = threshold/i+0x40;
           var color:uint = 0x00000000;
           var maskColor:uint = 0x000000ff;
-        
+
           binaryPixels.threshold(pixels, rectangle, new Point(ax*areaWidth,
                 ay*areaHeight), "<=", threshold, color, maskColor, false);
         }
